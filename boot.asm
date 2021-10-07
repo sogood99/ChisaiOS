@@ -2,6 +2,8 @@
 
 [org 0x7c00] ; boot sector starts in 0x7c00
 
+KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be located
+
 mov bp, 0x9000 ; lol 16 bit stuff (sets a stack)
 call switch_32_pm ; enters 32 bit mode and jumps to begin_pm
 
