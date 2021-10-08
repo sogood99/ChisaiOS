@@ -28,6 +28,6 @@ kernel/kernel.bin : kernel/kernel_entry.o ${OBJ}
 	nasm $< -f bin -o $@
 
 clean:
-	rm os_img
+	rm -rf os_img
 	find . -name \*.o -type f -delete
 	find . -name \*.bin -type f -delete
