@@ -16,8 +16,8 @@ KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be loca
 	call switch_32_pm ; enters 32 bit mode and jumps to begin_pm
 
 ; pure 16bit land
-%include "print/print_bios.asm"
-%include "disk/disk.asm"
+%include "./boot/print/print_bios.asm"
+%include "./boot/disk/disk.asm"
 
 load_kernel:
 	; load kernel from memory
@@ -31,9 +31,9 @@ load_kernel:
 	ret
 
 ; might be contaminated with 32bit stuff
-%include "switch.asm"
-%include "gdt.asm"
-%include "print/print.asm"
+%include "./boot/switch.asm"
+%include "./boot/gdt.asm"
+%include "./boot/print/print.asm"
 
 [bits 32]
 
