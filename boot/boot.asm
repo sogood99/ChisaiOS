@@ -21,9 +21,9 @@ KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be loca
 
 load_kernel:
 	; load kernel from memory
-	mov bx, KERNEL_OFFESET ; load stuff from disk to KERNEL_OFFESET in mem
-	mov dh, 15 ; size of 15 sectors ( 7 MB, should be enough )
-	mov dl, [BOOT_DRIVE] ; drive = boot drive
+	mov bx , KERNEL_OFFESET ; load stuff from disk to KERNEL_OFFESET in mem
+	mov dh , 15 ; size of 15 sectors ( 7 MB should be enough )
+	mov dl , [BOOT_DRIVE] ; drive = boot drive
 	call disk_load
 
 	mov bx, MSG_LOAD_KERNEL
