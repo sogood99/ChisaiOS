@@ -43,7 +43,7 @@ begin_pm:
 
 	call KERNEL_OFFESET ; call the kernel
 
-	jmp $ ; infinite loop
+	jmp $ ; infinite loop ( doesnt actually get called )
 
 ; constants
 BOOT_DRIVE db 0
