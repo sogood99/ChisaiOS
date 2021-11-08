@@ -1,3 +1,7 @@
+/*
+ * Main file for the whole OS
+ */
+
 void main_kernel(){
 	char* video_memory = (char*) 0xb8000;
 	char* start_msg = "Kernel Loaded";

@@ -5,4 +5,4 @@
 [extern main_kernel]
 
 call main_kernel
-jmp $ ; infinite loop
+jmp $ ; infinite loop, should not run
