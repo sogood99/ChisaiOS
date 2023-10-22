@@ -8,7 +8,7 @@ KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be loca
 
 	mov bp, 0x9000 ; lol 16 bit stuff (sets a stack)
 
-	mov bx, MSG_16_BIT ; print sucess message from bios
+	mov bx, MSG_16_BIT ; print success message from bios
 	call print_bios
 
 	call load_kernel
@@ -49,9 +49,10 @@ begin_pm:
 BOOT_DRIVE db 0
 
 MSG_LOAD_KERNEL db "Successfully loaded Kernel", 0
-MSG_16_BIT db "Successfully loaded 16-bit MODE ", 0
+MSG_16_BIT db "Successfully loaded 16-bit Mode", 0
 MSG_32_BIT db "Sucessfully loaded 32-bit Protected Mode", 0
 
 ; for booting
 times 510 - ($-$$) db 0
 dw 0xaa55
+

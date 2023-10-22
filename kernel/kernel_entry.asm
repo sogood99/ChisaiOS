@@ -2,7 +2,7 @@
 ; Simply call the main_kernel function
 ; ensure we jump to the correct main function
 [bits 32]
-[extern main_kernel]
+[extern kmain]
 
-call main_kernel
+call kmain
 jmp $ ; infinite loop, should not run

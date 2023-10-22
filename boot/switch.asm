@@ -10,7 +10,7 @@ switch_32_pm: ; switch to 32 bit protected mode
 	or eax, 0x1
 	mov cr0, eax
 
-	jmp CODE_SEG:init ; make far jump so cpu flushes future code as to not have weird stuff happen
+	jmp CODE_SEG:init ; make far jump so cpu flushes future code in the pipeline as to not have weird stuff happen
 
 [bits 32] ; tell assembler we are in 32 bit mode
 

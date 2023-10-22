@@ -1,4 +1,4 @@
 *.o
 *.bin
 *.swp
-os_img
+os.img

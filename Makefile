@@ -4,22 +4,23 @@ HEADERS = $(wildcard kernel/*.h drivers/*.h)
 
 OBJ = ${C_SOURCES:.c=.o}
 
-# defualts to building os_img
-all: os_img
+# defualts to building os.img
+all: os.img
 
-# make run launches bochs
+# make run launches qemu
 run: all
-	bochs
+	qemu-system-x86_64 -drive format=raw,file=os.img
 
-os_img : boot/boot.bin kernel/kernel.bin
-	cat $^ > os_img
+os.img : boot/boot.bin kernel/kernel.bin
+	cat $^ > os.img
 
+# link using link.ld file, with entry -e 0x1000
 kernel/kernel.bin : kernel/kernel_entry.o ${OBJ}
-	i386-elf-ld -o $@ -Ttext 0x1000 $^ --oformat binary
+	ld -T link.ld -e 0x1000 -m elf_i386 -o $@ $^ --oformat binary
 
 # combile all c to obj files
 %.o : %.c ${H_EADERS}
-	i386-elf-gcc -ffreestanding -c $< -o $@
+	gcc -m32 -fno-pie -static -nostdlib -ffreestanding -c $< -o $@
 
 %.o : %.asm
 	nasm $< -f elf -o $@
@@ -28,6 +29,6 @@ kernel/kernel.bin : kernel/kernel_entry.o ${OBJ}
 	nasm $< -f bin -o $@
 
 clean:
-	rm -rf os_img
+	rm -rf os.img
 	find . -name \*.o -type f -delete
 	find . -name \*.bin -type f -delete

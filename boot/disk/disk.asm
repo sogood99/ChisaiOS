@@ -19,7 +19,7 @@ disk_load:
 
 	pop dx
 	cmp dh, al
-	jne sector_not_fully_read ; if actual readed sector ( = al ) != dh, erro
+	jne sector_not_fully_read ; if actual readed sector ( = al ) != dh, error
 
 	popa
 
