@@ -27,8 +27,9 @@ SECTIONS {
     /* extra stuff to fill for bootloader to have 15 sectors = 7680 bytes */
     .fill :
     {
-        FILL(0xB);
-        . = 0x00004000;
+        . = ALIGN(8);
+        FILL(0xDEADC0DE);
+        . = 0x00002000;
         BYTE(0xA);
     }
 }
