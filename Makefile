@@ -1,6 +1,6 @@
 # Use wildcard to get all c files
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
 
 OBJ = ${C_SOURCES:.c=.o}
 
@@ -10,6 +10,9 @@ all: os.img
 # make run launches qemu
 run: all
 	qemu-system-x86_64 -drive format=raw,file=os.img
+
+debug: all
+	qemu-system-x86_64 -s -S -drive format=raw,file=os.img
 
 os.img : boot/boot.bin kernel/kernel.bin
 	cat $^ > os.img

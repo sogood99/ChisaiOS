@@ -1,3 +1,5 @@
+#ifndef SCREEN_H
+#define SCREEN_H
 #define VIDEO_ADDRESS 0xb8000
 #define MAX_ROW 25
 #define MAX_COL 80
@@ -12,3 +14,4 @@
 void clear_screen();
 void kprint_at(char *str, int row, int col);
 void kprint(char *str);
+#endif

@@ -1,4 +1,5 @@
 #include "screen.h"
+#include "../utils/types.h"
 #include "ports.h"
 
 /* Screen UI and stuff */
@@ -15,8 +16,8 @@ int get_offset_col(int offset) {
   return (offset - (get_offset_row(offset) * 2 * MAX_COL)) / 2;
 }
 
-int print_char(char c, int row, int col, char attribute_byte) {
-  unsigned char *vidmem = (unsigned char *)VIDEO_ADDRESS;
+int print_char(char c, int row, int col, uint8_t attribute_byte) {
+  uint8_t *vidmem = (uint8_t *)VIDEO_ADDRESS;
 
   if (!attribute_byte) {
     attribute_byte = WHITE_ON_BLACK;
@@ -80,9 +81,9 @@ int get_cursor_offset() {
 void set_cursor_offset(int offset) {
   offset /= 2;
   port_byte_out(REG_SCREEN_CTRL, 14);
-  port_byte_out(REG_SCREEN_DATA, (unsigned char)(offset >> 8));
+  port_byte_out(REG_SCREEN_DATA, (uint8_t)(offset >> 8));
   port_byte_out(REG_SCREEN_CTRL, 15);
-  port_byte_out(REG_SCREEN_DATA, (unsigned char)(offset & 0xff));
+  port_byte_out(REG_SCREEN_DATA, (uint8_t)(offset & 0xff));
 }
 
 int get_screen_offset(int row, int col) { return 2 * (row * MAX_COL + col); }
@@ -91,7 +92,7 @@ int get_screen_offset(int row, int col) { return 2 * (row * MAX_COL + col); }
 void clear_screen() {
   int screen_size = MAX_COL * MAX_ROW;
   int i;
-  char *screen = (char *)VIDEO_ADDRESS;
+  uint8_t *screen = (uint8_t *)VIDEO_ADDRESS;
 
   for (i = 0; i < screen_size; i++) {
     screen[i * 2] = ' ';

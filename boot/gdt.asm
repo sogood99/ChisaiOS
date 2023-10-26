@@ -8,12 +8,12 @@ gdt_null: ; 8 bytes of null descriptor
 	dd 0x0
 
 gdt_code: ; data segment descriptor
-	dw 0xffff ; limit
-	dw 0x0 ; base
-	db 0x0 ; base
-	db 10011010b ; flags
-	db 11001111b ; flags
-	db 0x0
+	dw 0xffff ; lower 16 bit of the limit
+	dw 0x0 ; lower 16 bit of the base
+	db 0x0 ; midde 16 bit of the base
+	db 10011010b ; access flags
+	db 11001111b ; granularity
+	db 0x0 ; upper 16 bit of the base
 
 gdt_data: ; data segment, basically the same as code (execpt for flags)
 	dw 0xffff ; limit

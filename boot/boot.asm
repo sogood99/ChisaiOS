@@ -6,7 +6,7 @@ KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be loca
 
 	mov [BOOT_DRIVE], dl ; initallly dl = disk # of boot drive
 
-	mov bp, 0x9000 ; lol 16 bit stuff (sets a stack)
+	mov bp, 0xf000 ; lol 16 bit stuff (sets a stack)
 
 	mov bx, MSG_16_BIT ; print success message from bios
 	call print_bios
@@ -20,7 +20,7 @@ KERNEL_OFFESET equ 0x1000 ; where we defined the kernel main function to be loca
 %include "./boot/disk/disk.asm"
 
 load_kernel:
-	; load kernel from memory
+	; load kernel to memory
 	mov bx , KERNEL_OFFESET ; load stuff from disk to KERNEL_OFFESET in mem
 	mov dh , 15 ; size of 15 sectors ( 7 MB should be enough )
 	mov dl , [BOOT_DRIVE] ; drive = boot drive
@@ -54,5 +54,5 @@ MSG_32_BIT db "Sucessfully loaded 32-bit Protected Mode", 0
 
 ; for booting
 times 510 - ($-$$) db 0
-dw 0xaa55
+dw 0xaa55 ; magic number
 
