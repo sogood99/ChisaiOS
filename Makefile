@@ -18,7 +18,7 @@ os.img : boot/boot.bin kernel/kernel.bin
 	cat $^ > os.img
 
 # link using link.ld file, with entry -e 0x1000
-kernel/kernel.bin : kernel/kernel_entry.o ${OBJ}
+kernel/kernel.bin : kernel/kernel_entry.o cpu/interrupt.o ${OBJ}
 	ld -T link.ld -e 0x1000 -m elf_i386 -o $@ $^ --oformat binary
 
 # combile all c to obj files

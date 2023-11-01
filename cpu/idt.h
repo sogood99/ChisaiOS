@@ -15,9 +15,11 @@ typedef struct idt_entry_struct idt_entry_t;
 
 struct idt_ptr_struct {
   uint16_t limit;
-  uint16_t base;
+  uint32_t base;
 } __attribute__((packed));
 typedef struct idt_ptr_struct idt_ptr_t;
+
+void init_idt();
 
 extern void isr0(), isr1(), isr2(), isr3(), isr4(), isr5(), isr6(), isr7(),
     isr8(), isr9(), isr10(), isr11(), isr12(), isr13(), isr14(), isr15(),

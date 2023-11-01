@@ -19,3 +19,10 @@ Install the i386 cross compiler with [this tutorial](https://wiki.osdev.org/GCC_
 ### Clean
 
 ### `make clean`
+
+## Clangd
+
+For most 64 bit machines, clangd might complain that the addresses are 64 bit when casting to uint32_t, to fix this, simply run
+```
+bear -- make
+```
