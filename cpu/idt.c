@@ -1,5 +1,6 @@
 #include "idt.h"
 #include "../drivers/ports.h"
+#include "../drivers/screen.h"
 #include "../utils/types.h"
 #include "isr.h"
 
@@ -49,18 +50,6 @@ void init_idt() {
   idt_set_gate(30, (uint32_t)isr30, 0x08, 0x8E);
   idt_set_gate(31, (uint32_t)isr31, 0x08, 0x8E);
 
-  // Remap the irq table.
-  port_byte_out(0x20, 0x11);
-  port_byte_out(0xA0, 0x11);
-  port_byte_out(0x21, 0x20);
-  port_byte_out(0xA1, 0x28);
-  port_byte_out(0x21, 0x04);
-  port_byte_out(0xA1, 0x02);
-  port_byte_out(0x21, 0x01);
-  port_byte_out(0xA1, 0x01);
-  port_byte_out(0x21, 0x0);
-  port_byte_out(0xA1, 0x0);
-
   idt_set_gate(32, (uint32_t)irq0, 0x08, 0x8E);
   idt_set_gate(33, (uint32_t)irq1, 0x08, 0x8E);
   idt_set_gate(34, (uint32_t)irq2, 0x08, 0x8E);
@@ -77,6 +66,18 @@ void init_idt() {
   idt_set_gate(45, (uint32_t)irq13, 0x08, 0x8E);
   idt_set_gate(46, (uint32_t)irq14, 0x08, 0x8E);
   idt_set_gate(47, (uint32_t)irq15, 0x08, 0x8E);
+
+  // Remap the irq table.
+  port_byte_out(0x20, 0x11);
+  port_byte_out(0xA0, 0x11);
+  port_byte_out(0x21, 0x20);
+  port_byte_out(0xA1, 0x28);
+  port_byte_out(0x21, 0x04);
+  port_byte_out(0xA1, 0x02);
+  port_byte_out(0x21, 0x01);
+  port_byte_out(0xA1, 0x01);
+  port_byte_out(0x21, 0x0);
+  port_byte_out(0xA1, 0x0);
 
   idt_flush((uint32_t)&idt_ptr);
 }

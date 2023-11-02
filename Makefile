@@ -23,7 +23,7 @@ kernel/kernel.bin : kernel/kernel_entry.o cpu/interrupt.o ${OBJ}
 
 # combile all c to obj files
 %.o : %.c ${H_EADERS}
-	gcc -m32 -fno-pie -static -nostdlib -ffreestanding -c $< -o $@
+	gcc -g -m32 -fno-pie -fno-stack-protector -static -nostdlib -ffreestanding -c $< -o $@
 
 %.o : %.asm
 	nasm $< -f elf -o $@

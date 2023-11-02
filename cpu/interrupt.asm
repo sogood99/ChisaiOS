@@ -41,9 +41,9 @@ irq_common_stub:
     mov fs, ax
     mov gs, ax
 
-    call irq_handler ; Different than the ISR code
+    call irq_handler    ; Different than the ISR code
 
-    pop ebx  ; Different than the ISR code
+    pop ebx             ; Different than the ISR code
     mov ds, bx
     mov es, bx
     mov fs, bx
