@@ -15,11 +15,9 @@ void kmain() {
 
   // initialize interrupt table
   init_idt();
+  __asm__ __volatile__("sti");
   // initialize timer
   init_timer(50);
-  init_keyboard();
-  __asm__ __volatile__("int $3");
-
-  while (1)
-    ;
+  for (;;)
+    __asm__ __volatile__("hlt");
 }

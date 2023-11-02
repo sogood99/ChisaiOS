@@ -15,7 +15,7 @@ typedef struct registers {
 #define IRQ1 33
 
 // function that takes in a register as parameter
-typedef void (*isr_t)(registers_t);
+typedef void (*isr_t)(registers_t *);
 void register_interrupt_handler(uint8_t n, isr_t handler);
 
 #endif
