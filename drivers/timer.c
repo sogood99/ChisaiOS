@@ -3,12 +3,7 @@
 #include "ports.h"
 #include "screen.h"
 
-uint32_t tick = 0;
-
-static void timer_callback(registers_t *regs) {
-  tick++;
-  kprint("Tick");
-}
+static void timer_callback(registers_t *regs) {}
 
 void init_timer(uint32_t freq) {
   register_interrupt_handler(IRQ0, timer_callback);

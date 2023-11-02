@@ -1,6 +1,6 @@
 # Use wildcard to get all c files
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c)
-HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c cpu/*.c utils/*.c)
+HEADERS = $(wildcard kernel/*.h drivers/*.h cpu/*.h utils/*.h)
 
 OBJ = ${C_SOURCES:.c=.o}
 
